@@ -1,0 +1,33 @@
+<ion-view view-title="Loans">
+  <ion-content class="padding">
+    <h2>Calculate you Loans</h2>
+    <label class="item item-input">
+  <span class="input-label">Prinicipal</span>
+  <input type="number" ng-model="data.p">
+</label>
+    <label class="item item-input">
+  <span class="input-label">Interest Rate</span>
+  <input type="number" ng-model="data.R">
+</label>
+    <label class="item item-input">
+  <span class="input-label">Tenure</span>
+  Years &nbsp;&nbsp;&nbsp;&nbsp;<input type="number" ng-model="data.nYear"> 
+  Months &nbsp;&nbsp;&nbsp;&nbsp; <input type="number" ng-model="data.nMonth">
+</label>
+    <label class="item item-input">
+  <span class="input-label">EMI</span>
+  <div>{{((Math.pow((1+(data.R/1200)),data.nMonth+(data.nYear*12)))*data.p*(data.R/1200))/(Math.pow(1+(data.R/1200),data.nMonth+(data.nYear*12))-1)}}</div>
+</label>
+    <button ng-click="calculateBreakup()">Calculate Breakup</button>
+
+    <div class="row" ng-repeat="monthData in data.tableData">      
+      <div class="col">{{monthData.emiYear}}</div>
+      <div class="col">{{monthData.emiMonth}}</div>
+      <div class="col">{{monthData.fundUnits}}</div>
+      <div class="col">{{monthData.emi | number:2}}</div>
+      <div class="col">{{monthData.interest | number:2}}</div>
+      <div class="col">{{monthData.principal | number:2}}</div>
+      <div class="col">{{monthData.remainingPrincipal | number:2}}</div>
+    </div>
+  </ion-content>
+</ion-view>
