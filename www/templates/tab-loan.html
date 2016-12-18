@@ -1,6 +1,6 @@
 <ion-view view-title="Loans">
   <ion-content class="padding">
-    <h2>Calculate you Loans</h2>
+    <h2>Calculate your Loans</h2>
     <label class="item item-input">
   <span class="input-label">Prinicipal</span>
   <input type="number" ng-model="data.p">
@@ -18,9 +18,13 @@
   <span class="input-label">EMI</span>
   <div>{{((Math.pow((1+(data.R/1200)),data.nMonth+(data.nYear*12)))*data.p*(data.R/1200))/(Math.pow(1+(data.R/1200),data.nMonth+(data.nYear*12))-1)}}</div>
 </label>
-    <button ng-click="calculateBreakup()">Calculate Breakup</button>
 
-    <div class="row" ng-repeat="monthData in data.tableData">      
+  <button class="button button-dark" ng-click="calculateBreakup()">Calculate Breakup</button>
+    <div zingchart id="chart-2" zc-json="principalJson" zc-width="80%" zc-height="300px"></div>
+    <div zingchart id="chart-1" zc-json="yearlyJson" zc-width="80%" zc-height="300px"></div>
+    
+    
+    <div class="row" ng-repeat="monthData in data.tableData">
       <div class="col">{{monthData.emiYear}}</div>
       <div class="col">{{monthData.emiMonth}}</div>
       <div class="col">{{monthData.fundUnits}}</div>
